@@ -1,4 +1,4 @@
-# Voice AI Agent
+# Voice AI Agent with KaniTTS
 
 A real-time voice AI assistant built with LiveKit Agents framework, featuring speech-to-text, language processing, and text-to-speech capabilities.
 
