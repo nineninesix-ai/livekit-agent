@@ -48,8 +48,8 @@ lk cloud auth
 ### 2. Clone and Setup
 
 ```bash
-git clone 
-cd livekit-voice-agent
+git clone git@github.com:nineninesix-ai/livekit-agent.git
+cd livekit-agent
 ```
 
 ### 3. Install Dependencies
