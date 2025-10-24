@@ -133,15 +133,6 @@ This project uses a custom TTS server instead of the default OpenAI TTS. The con
 
 Check our FastAPI implementation here: https://github.com/nineninesix-ai/kanitts-vllm
 
-### Assistant Instructions
-
-Customize the AI assistant's behavior by modifying the instructions in [agent.py:15-18](agent.py#L15-L18):
-
-```python
-instructions="""You are a helpful voice AI assistant.
-Your responses are concise, to the point, and without any complex formatting..."""
-```
-
 ### Audio Models Configuration
 
 Current configuration:
@@ -150,17 +141,6 @@ Current configuration:
 - **VAD**: Silero VAD
 - **Turn Detection**: Multilingual model
 - **Noise Cancellation**: BVC (recommended for telephony)
-
-## Project Structure
-
-```
-livekit-voice-agent/
-├── agent.py              # Main agent implementation
-├── pyproject.toml        # Python dependencies
-├── uv.lock              # Dependency lock file
-├── .env.local           # Environment variables (not committed)
-└── README.md            # This file
-```
 
 ## Telephony Applications
 
