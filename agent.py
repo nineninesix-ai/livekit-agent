@@ -1,3 +1,4 @@
+import os
 from dotenv import load_dotenv
 
 from livekit import agents
@@ -29,7 +30,7 @@ async def entrypoint(ctx: agents.JobContext):
             model="gpt-4o-mini"
         ),
         tts = openai.TTS(
-            base_url="http://localhost:8000/v1",
+            base_url=os.getenv("KANI_BASE_URL", "http://localhost:8000/v1"),
             model="gpt-4o-mini-tts",
             voice="andrew",
             response_format="pcm"

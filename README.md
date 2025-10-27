@@ -73,6 +73,7 @@ LIVEKIT_API_SECRET=your_livekit_api_secret
 LIVEKIT_URL=wss://your-project.livekit.cloud
 DEEPGRAM_API_KEY=your_deepgram_api_key
 OPENAI_API_KEY=your_openai_api_key
+KANI_BASE_URL=http://localhost:8000/v1
 ```
 
 **Quick setup with LiveKit CLI:**
@@ -125,11 +126,12 @@ uv run agent.py start
 
 ### Custom TTS Server
 
-This project uses a custom TTS server instead of the default OpenAI TTS. The configuration in [agent.py:31-36](agent.py#L31-L36) points to `http://localhost:8000/v1`.
+This project uses a custom TTS server instead of the default OpenAI TTS. The TTS server URL is configured via the `KANI_BASE_URL` environment variable, which defaults to `http://localhost:8000/v1` if not set.
 
 **To use the local TTS server:**
-1. Ensure your TTS server is running on port 8000
-2. The server should be OpenAI-compatible (accepts same API format)
+1. Set `KANI_BASE_URL` in your `.env.local` file (or leave unset to use the default)
+2. Ensure your TTS server is running at the specified URL
+3. The server should be OpenAI-compatible (accepts same API format)
 
 Check our FastAPI implementation here: https://github.com/nineninesix-ai/kanitts-vllm
 
@@ -151,6 +153,32 @@ room_input_options=RoomInputOptions(
     noise_cancellation=noise_cancellation.BVCTelephony(),
 )
 ```
+
+## Deployment
+
+### Deploy to LiveKit Cloud
+
+To deploy your agent to LiveKit Cloud for production use:
+
+```bash
+lk agent create
+```
+
+This command will:
+- Automatically generate `Dockerfile`, `.dockerignore`, and `livekit.toml` configuration files
+- Register your agent with your LiveKit Cloud project
+- Deploy the containerized agent to the cloud
+
+**Prerequisites for deployment:**
+- LiveKit CLI authenticated with your cloud account (`lk cloud auth`)
+- All environment variables configured in your LiveKit Cloud project settings
+
+After deployment, your agent will be available through:
+- [LiveKit Agents Playground](https://cloud.livekit.io/projects/p_/agents)
+- Your custom web/mobile applications. Check our web embed app example here: https://github.com/nineninesix-ai/voice-agent-web-embed
+- Telephony integrations
+
+**Note:** For self-hosted production environments, refer to the [LiveKit documentation](https://docs.livekit.io/agents/) for custom deployment configurations.
 
 ## Resources
 
